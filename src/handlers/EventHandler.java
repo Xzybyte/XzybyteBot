@@ -1,7 +1,8 @@
 package handlers;
 
 import net.dv8tion.jda.api.events.ReadyEvent;
-import net.dv8tion.jda.api.events.guild.member.GenericGuildMemberEvent;
+import net.dv8tion.jda.api.events.guild.member.*;
+import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateNicknameEvent;
 import net.dv8tion.jda.api.events.message.GenericMessageEvent;
 import net.dv8tion.jda.api.events.message.MessageDeleteEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -27,6 +28,24 @@ public class EventHandler extends ListenerAdapter {
         } else if (event instanceof MessageUpdateEvent) {
             genericMessageHandler.handleUpdatedMessage((MessageUpdateEvent) event);
         }
+    }
+
+    @Override
+    public void onGenericGuildMember(GenericGuildMemberEvent event) {
+        if (event instanceof GuildMemberJoinEvent) {
+            genericGuildMemberHandler.handleGuildMemberJoin((GuildMemberJoinEvent) event);
+        } else if (event instanceof GuildMemberUpdateNicknameEvent) {
+            genericGuildMemberHandler.handleGuildMemberNickChange((GuildMemberUpdateNicknameEvent) event);
+        } else if (event instanceof GuildMemberRoleAddEvent) {
+            genericGuildMemberHandler.handleGuildMemberRoleAdd((GuildMemberRoleAddEvent) event);
+        } else if (event instanceof GuildMemberRoleRemoveEvent) {
+            genericGuildMemberHandler.handleGuildMemberRoleRemove((GuildMemberRoleRemoveEvent) event);
+        }
+    }
+
+    @Override
+    public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
+        genericGuildMemberHandler.handleGuildMemberLeave(event);
     }
 
     @Override

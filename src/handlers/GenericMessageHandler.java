@@ -16,7 +16,7 @@ public class GenericMessageHandler {
     private Log log;
 
     public GenericMessageHandler() {
-        log = new Log();
+        this.log = new Log();
     }
 
     public void handleReceivedMessage(MessageReceivedEvent event) {
@@ -57,9 +57,9 @@ public class GenericMessageHandler {
                     eb.setFooter("ID: " + m.getAuthor().getId() + " | " + d.toString(), null);
                     if (eb.isValidLength()) {
                         MessageEmbed build = eb.build();
-                        TextChannel txtChannel = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getLogsChannel());
-                        if (txtChannel != null) {
-                            txtChannel.sendMessageEmbeds(build).queue();
+                        TextChannel logs = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getLogsChannel());
+                        if (logs != null) {
+                            logs.sendMessageEmbeds(build).queue();
                         }
                     }
                 }
@@ -89,9 +89,9 @@ public class GenericMessageHandler {
                         eb.setFooter("ID: " + m.getAuthor().getId() + " | " + d.toString(), null);
                         if (eb.isValidLength()) {
                             MessageEmbed build = eb.build();
-                            TextChannel txtChannel = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getLogsChannel());
-                            if (txtChannel != null) {
-                                txtChannel.sendMessageEmbeds(build).queue();
+                            TextChannel logs = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getLogsChannel());
+                            if (logs != null) {
+                                logs.sendMessageEmbeds(build).queue();
                             }
                             log.getChannel(channel.getId()).getMessages().set(id, event.getMessage());
                             return;

@@ -40,7 +40,6 @@ public class Log {
         Load up to 100 messages from existing channels
      */
     public void LoadLogs() {
-       // System.out.println()
         for (TextChannel ch : Main.getInstance().getGuild().getTextChannels()) {
             if (ch != null) {
                 ch.getHistory().retrievePast(100).queue((List<Message> mess) -> mess.forEach((messages) -> {

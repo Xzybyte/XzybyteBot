@@ -30,11 +30,15 @@ public class GenericGuildMemberHandler {
         eb.setTitle(mem.getUser().getName() + " has joined the server. ", null);
         eb.setDescription("User created: " + month.name() + " / " + day + " / " + year);
         eb.setFooter("ID: " + mem.getUser().getId() + " | " + d.toString(), null);
-        Role role = Main.getInstance().getGuild().getRoleById(Main.getInstance().getConfig().getDefaultRoleID());
-        if (role != null) {
-            event.getGuild().addRoleToMember(event.getMember(), role).queue();
+
+        String roleId = Main.getInstance().getConfig().getDefaultRoleID();
+        if (roleId != null && !roleId.isEmpty()) {
+            Role role = Main.getInstance().getGuild().getRoleById(roleId);
+            if (role != null) {
+                event.getGuild().addRoleToMember(event.getMember(), role).queue();
+            }
         }
-        TextChannel welcome = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getLogsChannel());
+        TextChannel welcome = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getWelcomeChannel());
         if (welcome != null) {
             welcome.sendMessage(mem.getAsMention() + "" + Main.getInstance().getConfig().getWelcomeMessage()).queue();
         }

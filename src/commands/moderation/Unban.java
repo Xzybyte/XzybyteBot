@@ -16,7 +16,7 @@ public class Unban implements Command {
     @Override
     public void runCommand(String[] args, MessageReceivedEvent event) {
         if (args.length < 2) {
-            event.getTextChannel().sendMessage("You must mention the user you wish to unban.").queue();
+            event.getTextChannel().sendMessage("You must add in the ID of the user you wish to unban.").queue();
             return;
         }
         String id = args[1];

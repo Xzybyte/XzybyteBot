@@ -30,6 +30,9 @@ public class GenericMessageHandler {
             return;
         }
         if (!event.getAuthor().isBot()) {
+            if (msg.isEmpty()) {
+                return;
+            }
             Main.getInstance().getCommandProcessor().handleCommand(Main.getInstance().getCommandProcessor().parseCommand(msg, event));
         }
         if (log != null) {

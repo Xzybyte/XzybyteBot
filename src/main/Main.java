@@ -18,7 +18,7 @@ public class Main {
 
     private JDA jda;
     private JDABuilder builder;
-    private String BOT_TOKEN = "NTc1MjIyNzk2NTI3ODYxNzYw.XNEz-Q.66zBareD6hJ-LDaIqG7_v40sfew";
+    private String BOT_TOKEN = "";
     private Config config;
     private CommandProcessor commandProcessor;
 

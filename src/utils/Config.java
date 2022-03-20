@@ -10,6 +10,7 @@ public class Config {
     private String welcomeMessage = "";
     private String logsChannel = "";
     private String defaultRoleID = "";
+    private String prefix = "!";
 
     public void loadConfig() {
         Properties p = new Properties();
@@ -20,6 +21,7 @@ public class Config {
             setWelcomeChannel(p.getProperty("welcomeMessage"));
             setLogsChannel(p.getProperty("logsChannel"));
             setDefaultRoleID(p.getProperty("defaultRoleID"));
+            setPrefix(p.getProperty("prefix"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(0);
@@ -56,5 +58,13 @@ public class Config {
 
     public String getDefaultRoleID() {
         return defaultRoleID;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 }

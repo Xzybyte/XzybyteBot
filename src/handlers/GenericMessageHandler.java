@@ -1,5 +1,6 @@
 package handlers;
 
+import commands.CommandProcessor;
 import main.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
@@ -29,7 +30,7 @@ public class GenericMessageHandler {
             return;
         }
         if (!event.getAuthor().isBot()) {
-            //
+            Main.getInstance().getCommandProcessor().handleCommand(Main.getInstance().getCommandProcessor().parseCommand(msg, event));
         }
         if (log != null) {
             if (log.getChannel(channel.getId()) != null) {

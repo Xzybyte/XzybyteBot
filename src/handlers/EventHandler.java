@@ -1,22 +1,29 @@
 package handlers;
 
 import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.events.guild.GuildBanEvent;
 import net.dv8tion.jda.api.events.guild.member.*;
 import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateNicknameEvent;
 import net.dv8tion.jda.api.events.message.GenericMessageEvent;
 import net.dv8tion.jda.api.events.message.MessageDeleteEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.MessageUpdateEvent;
+import net.dv8tion.jda.api.events.user.update.UserUpdateNameEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class EventHandler extends ListenerAdapter {
 
     private GenericMessageHandler genericMessageHandler;
     private GenericGuildMemberHandler genericGuildMemberHandler;
+    private GenericGuildHandler genericGuildHandler;
+    private GenericUserHandler genericUserHandler;
 
     public void registerHandlers() {
         this.genericMessageHandler = new GenericMessageHandler();
+        genericMessageHandler.getLog().LoadLogs();
         this.genericGuildMemberHandler = new GenericGuildMemberHandler();
+        this.genericGuildHandler = new GenericGuildHandler();
+        this.genericUserHandler = new GenericUserHandler();
     }
 
     @Override
@@ -46,6 +53,16 @@ public class EventHandler extends ListenerAdapter {
     @Override
     public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
         genericGuildMemberHandler.handleGuildMemberLeave(event);
+    }
+
+    @Override
+    public void onGuildBan(GuildBanEvent event) {
+        genericGuildHandler.handleGuildMemberBan(event);
+    }
+
+    @Override
+    public void onUserUpdateName(UserUpdateNameEvent event) {
+        genericUserHandler.handleGuildMemberNameChange(event);
     }
 
     @Override

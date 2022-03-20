@@ -68,39 +68,36 @@ public class GenericMessageHandler {
     }
 
     public void handleUpdatedMessage(MessageUpdateEvent event) {
-        String message = event.getMessageId();
+        String mId = event.getMessageId();
+        Message m = event.getMessage();
         MessageChannel channel = event.getChannel();
 
         if (log != null) {
             if (log.getChannel(channel.getId()) != null) {
-                int id = 0;
-                for (Message m : log.getChannel(channel.getId()).getMessages()) {
-                    if (m.getId().equals(message)) {
-                        if (m.getContentDisplay().equals(event.getMessage().getContentDisplay())) { // same message?
-                            return;
-                        }
-                        Date d = new Date();
-                        EmbedBuilder eb = new EmbedBuilder();
-                        eb.setAuthor(m.getAuthor().getName(), m.getAuthor().getAvatarUrl(), m.getAuthor().getAvatarUrl());
-                        eb.setColor(Color.blue);
-                        eb.setTitle("Message edited in #" + channel.getName(), null);
-                        eb.addField("Original", m.getContentDisplay(), true);
-                        eb.addField("Edited", event.getMessage().getContentDisplay(), false);
-                        eb.setFooter("ID: " + m.getAuthor().getId() + " | " + d.toString(), null);
-                        if (eb.isValidLength()) {
-                            MessageEmbed build = eb.build();
-                            TextChannel logs = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getLogsChannel());
-                            if (logs != null) {
-                                logs.sendMessageEmbeds(build).queue();
-                            }
-                            log.getChannel(channel.getId()).getMessages().set(id, event.getMessage());
-                            return;
-                        }
+                Message old = log.getChannel(channel.getId()).getMessage(mId);
+                int id = log.getChannel(channel.getId()).getMessages().indexOf(old);
+                Date d = new Date();
+                EmbedBuilder eb = new EmbedBuilder();
+                eb.setAuthor(m.getAuthor().getName(), m.getAuthor().getAvatarUrl(), m.getAuthor().getAvatarUrl());
+                eb.setColor(Color.blue);
+                eb.setTitle("Message edited in #" + channel.getName(), null);
+                eb.addField("Original", old.getContentDisplay(), true);
+                eb.addField("Edited", event.getMessage().getContentDisplay(), false);
+                eb.setFooter("ID: " + m.getAuthor().getId() + " | " + d.toString(), null);
+                if (eb.isValidLength()) {
+                    MessageEmbed build = eb.build();
+                    TextChannel logs = Main.getInstance().getGuild().getTextChannelById(Main.getInstance().getConfig().getLogsChannel());
+                    if (logs != null) {
+                        logs.sendMessageEmbeds(build).queue();
                     }
-                    id++;
+                    log.getChannel(channel.getId()).getMessages().set(id, event.getMessage());
                 }
             }
         }
+    }
+
+    public Log getLog() {
+        return log;
     }
 
 }

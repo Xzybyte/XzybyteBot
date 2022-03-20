@@ -11,10 +11,6 @@ public class Log {
 
     private List<ChannelLogs> chs = new ArrayList<>();
 
-    public Log() {
-        LoadLogs();
-    }
-
     public void addChannel(String chId, Message msg) {
         ChannelLogs cl = new ChannelLogs(chId);
         chs.add(cl);

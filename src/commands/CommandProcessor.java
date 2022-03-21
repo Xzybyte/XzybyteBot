@@ -1,5 +1,7 @@
 package commands;
 
+import casino.Dice;
+import casino.RPS;
 import commands.moderation.*;
 import main.Main;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -17,6 +19,9 @@ public class CommandProcessor {
         commands.put("timeout", new Timeout());
         commands.put("untimeout", new Untimeout());
         commands.put("prune", new Prune());
+
+        commands.put("dice", new Dice());
+        commands.put("rps", new RPS());
     }
 
     public CommandInfo parseCommand(String text, MessageReceivedEvent event) {

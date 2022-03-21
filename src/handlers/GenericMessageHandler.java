@@ -1,6 +1,7 @@
 package handlers;
 
 import commands.CommandProcessor;
+import discord.User;
 import main.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
@@ -25,6 +26,7 @@ public class GenericMessageHandler {
         Message message = event.getMessage();
         String msg = message.getContentDisplay();
         MessageChannel channel = event.getChannel();
+        Main main = Main.getInstance();
 
         if (self || event.isFromType(ChannelType.PRIVATE)) {
             return;
@@ -33,7 +35,16 @@ public class GenericMessageHandler {
             if (msg.isEmpty()) {
                 return;
             }
-            Main.getInstance().getCommandProcessor().handleCommand(Main.getInstance().getCommandProcessor().parseCommand(msg, event));
+            if (main.getUserStorage().getUserById(event.getMember().getId()) == null) {
+                User user = User.LoadUser(event.getMember().getId());
+                if (user != null) {
+                    main.getUserStorage().addUser(user);
+                } else {
+                    User.InsertUser(event.getMember().getId());
+                }
+            }
+            //main.getUserStorage().getUserById(event.getMember().getId());
+            main.getCommandProcessor().handleCommand(main.getCommandProcessor().parseCommand(msg, event));
         }
         if (log != null) {
             if (log.getChannel(channel.getId()) != null) {

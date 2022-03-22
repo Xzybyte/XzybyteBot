@@ -22,6 +22,12 @@ public class CommandProcessor {
 
         commands.put("dice", new Dice());
         commands.put("rps", new RPS());
+
+        commands.put("help", new Help());
+    }
+
+    public HashMap<String, Command> getAllCommands() {
+        return commands;
     }
 
     public CommandInfo parseCommand(String text, MessageReceivedEvent event) {

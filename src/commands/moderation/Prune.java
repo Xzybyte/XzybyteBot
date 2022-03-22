@@ -72,8 +72,8 @@ public class Prune implements Command {
     }
 
     @Override
-    public void description(String[] args, MessageReceivedEvent event) {
-
+    public String description() {
+        return "Prune messages from the chat. Usage: " + Main.getInstance().getConfig().getPrefix() + "prune <amount> <@mention> or !prune <amount>";
     }
 
     @Override

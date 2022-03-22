@@ -59,8 +59,8 @@ public class Dice implements Command {
     }
 
     @Override
-    public void description(String[] args, MessageReceivedEvent event) {
-
+    public String description() {
+        return "Dice game. Usage: " + Main.getInstance().getConfig().getPrefix() + "dice <amount> <number>";
     }
 
     @Override

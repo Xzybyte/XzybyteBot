@@ -58,8 +58,8 @@ public class Kick implements Command {
     }
 
     @Override
-    public void description(String[] args, MessageReceivedEvent event) {
-
+    public String description() {
+        return "Kick a user from the server. Usage: " + Main.getInstance().getConfig().getPrefix() + "kick <@mention>";
     }
 
     @Override

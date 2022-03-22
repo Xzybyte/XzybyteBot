@@ -88,24 +88,10 @@ public class User {
     }
 
     public static boolean getCD(String author) {
-        for (Map.Entry<String, Long> entry : cd.entrySet()) {
-            if (entry.getKey().equals(author)) {
-                if (entry.getValue() + 3000 > System.currentTimeMillis()) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return cd.entrySet().stream().filter(entry -> entry.getKey().equals(author)).noneMatch(entry -> entry.getValue() + 3000 > System.currentTimeMillis());
     }
 
     public static long returnCD(String author) {
-        long time = 0;
-        for (Map.Entry<String, Long> entry : cd.entrySet()) {
-            if (entry.getKey().equals(author)) {
-                time = entry.getValue();
-                break;
-            }
-        }
-        return time;
+        return cd.entrySet().stream().filter(entry -> entry.getKey().equals(author)).findFirst().map(Map.Entry::getValue).orElse(0L);
     }
 }

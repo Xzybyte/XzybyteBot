@@ -50,8 +50,8 @@ public class RPS implements Command {
     }
 
     @Override
-    public void description(String[] args, MessageReceivedEvent event) {
-
+    public String description() {
+        return "Rock paper scissors game. Usage: " + Main.getInstance().getConfig().getPrefix() + "rps <amount> <rock | paper | scissors>";
     }
 
     @Override

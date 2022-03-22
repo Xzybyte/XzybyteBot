@@ -22,14 +22,7 @@ public class Log {
     }
 
     public ChannelLogs getChannel(String chId) {
-        ChannelLogs sel = null;
-        for (ChannelLogs cl : getAllChannels()) {
-            if (cl.getId().equals(chId)) {
-                sel = cl;
-                break;
-            }
-        }
-        return sel;
+        return getAllChannels().stream().filter(cl -> cl.getId().equals(chId)).findFirst().orElse(null);
     }
 
     /*
@@ -71,14 +64,7 @@ public class Log {
         }
 
         public Message getMessage(String messageId) {
-            Message msg = null;
-            for (Message m : getMessages()) {
-                if (m.getId().equals(messageId)) {
-                    msg = m;
-                    break;
-                }
-            }
-            return msg;
+            return getMessages().stream().filter(message -> message.getId().equals(messageId)).findFirst().orElse(null);
         }
 
     }

@@ -17,7 +17,7 @@ public class Untimeout implements Command {
     @Override
     public void runCommand(String[] args, MessageReceivedEvent event) {
         if (args.length < 2) {
-            event.getTextChannel().sendMessage("You must mention the user you wish to timeout.").queue();
+            event.getTextChannel().sendMessage("You must mention the user you wish to untimeout.").queue();
             return;
         }
         List<User> mentions = event.getMessage().getMentionedUsers();
@@ -64,8 +64,8 @@ public class Untimeout implements Command {
     }
 
     @Override
-    public void description(String[] args, MessageReceivedEvent event) {
-
+    public String description() {
+        return "Untimeout a user from the server. Usage: " + Main.getInstance().getConfig().getPrefix() + "untimeout <@mention>";
     }
 
     @Override

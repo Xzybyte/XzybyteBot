@@ -58,8 +58,8 @@ public class Ban implements Command {
     }
 
     @Override
-    public void description(String[] args, MessageReceivedEvent event) {
-
+    public String description() {
+        return "Ban a user from the server. Usage: " + Main.getInstance().getConfig().getPrefix() + "ban <@mention>";
     }
 
     @Override

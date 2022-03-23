@@ -43,8 +43,8 @@ public class GenericMessageHandler {
                     User.InsertUser(event.getMember().getId());
                 }
             }
-            //main.getUserStorage().getUserById(event.getMember().getId());
             main.getCommandProcessor().handleCommand(main.getCommandProcessor().parseCommand(msg, event));
+            main.getGameManager().processText(msg, event, main.getUserStorage().getUserById(event.getMember().getId()));
         }
         if (log != null) {
             if (log.getChannel(channel.getId()) != null) {

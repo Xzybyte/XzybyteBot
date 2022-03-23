@@ -12,6 +12,11 @@ public class Config {
     private String defaultRoleID = "";
     private String prefix = "!";
 
+    private String unscrambleChannel = "";
+    private boolean unscramble;
+    private String triviaChannel = "";
+    private boolean trivia;
+
     private String user;
     private String password;
     private String database;
@@ -28,6 +33,11 @@ public class Config {
             setLogsChannel(p.getProperty("logsChannel"));
             setDefaultRoleID(p.getProperty("defaultRoleID"));
             setPrefix(p.getProperty("prefix"));
+
+            setUnscrambleChannel(p.getProperty("unscrambleChannel"));
+            setUnscramble(Boolean.parseBoolean(p.getProperty("unscramble")));
+            setTriviaChannel(p.getProperty("triviaChannel"));
+            setTrivia(Boolean.parseBoolean(p.getProperty("trivia")));
 
             setUser(p.getProperty("user"));
             setPassword(p.getProperty("password"));
@@ -79,6 +89,38 @@ public class Config {
 
     public String getPrefix() {
         return prefix;
+    }
+
+    public void setTrivia(boolean trivia) {
+        this.trivia = trivia;
+    }
+
+    public boolean getTrivia() {
+        return trivia;
+    }
+
+    public void setTriviaChannel(String triviaChannel) {
+        this.triviaChannel = triviaChannel;
+    }
+
+    public String getTriviaChannel() {
+        return triviaChannel;
+    }
+
+    public void setUnscramble(boolean unscramble) {
+        this.unscramble = unscramble;
+    }
+
+    public boolean getUnscramble() {
+        return unscramble;
+    }
+
+    public void setUnscrambleChannel(String unscrambleChannel) {
+        this.unscrambleChannel = unscrambleChannel;
+    }
+
+    public String getUnscrambleChannel() {
+        return unscrambleChannel;
     }
 
     public void setUser(String user) {

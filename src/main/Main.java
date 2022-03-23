@@ -22,7 +22,7 @@ public class Main {
 
     private JDA jda;
     private JDABuilder builder;
-    private String BOT_TOKEN = "NTc1MjIyNzk2NTI3ODYxNzYw.XNEz-Q.QT3yOKUYm9vb0dYUugayMVqS_tk";
+    private String BOT_TOKEN = "";
 
     private Config config;
     private CommandProcessor commandProcessor;

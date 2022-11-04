@@ -25,7 +25,7 @@ public class Timeout implements Command {
             event.getTextChannel().sendMessage("You must enter the amount of time in hours.").queue();
             return;
         }
-        List<User> mentions = event.getMessage().getMentionedUsers();
+        List<User> mentions = event.getMessage().getMentions().getUsers();
         Member memb = null;
         if (mentions.size() <= 0) {
             List<Member> list = Main.getInstance().getGuild().getMembersByName(args[1], true);
@@ -35,7 +35,7 @@ public class Timeout implements Command {
         }
         User mention;
         if (mentions.size() > 0) {
-            mention = event.getMessage().getMentionedUsers().get(0);
+            mention = event.getMessage().getMentions().getUsers().get(0);
         } else if (memb != null) {
             mention = memb.getUser();
         } else {

@@ -90,6 +90,9 @@ public class GenericMessageHandler {
         if (log != null) {
             if (log.getChannel(channel.getId()) != null) {
                 Message old = log.getChannel(channel.getId()).getMessage(mId);
+                if (old == null) {
+                    return;
+                }
                 int id = log.getChannel(channel.getId()).getMessages().indexOf(old);
                 Date d = new Date();
                 EmbedBuilder eb = new EmbedBuilder();

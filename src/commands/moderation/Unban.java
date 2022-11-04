@@ -5,6 +5,7 @@ import main.Main;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.UserSnowflake;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import utils.Permissions;
 
@@ -26,7 +27,7 @@ public class Unban implements Command {
             event.getTextChannel().sendMessage("Failed to unban ``" + id + "``. User isn't banned!").queue();
             return;
         }
-        event.getGuild().unban(id).queue(
+        event.getGuild().unban(UserSnowflake.fromId(id)).queue(
                 success -> event.getTextChannel().sendMessage("Successfully unbanned ``" + id + "``.").queue(),
                 error -> event.getTextChannel().sendMessage("Failed to unban ``" + id + "``.").queue()
         );

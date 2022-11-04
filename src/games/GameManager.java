@@ -22,7 +22,7 @@ public class GameManager {
             public void run() {
                 runGame();
             }
-        }, 300000, 300000);
+        }, 10000, 10000);
     }
 
     public void runGame() {

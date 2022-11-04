@@ -70,7 +70,7 @@ public class Main {
         config.loadConfig();
         userStorage = new UserStorage();
         gameManager = new GameManager();
-        gameManager.startGame();
+        //gameManager.startGame();
     }
 
     public void loadCommands() {

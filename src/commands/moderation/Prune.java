@@ -29,9 +29,9 @@ public class Prune implements Command {
             return;
         }
         if (args.length >= 3) {
-            List<User> mentions = event.getMessage().getMentionedUsers();
+            List<User> mentions = event.getMessage().getMentions().getUsers();
             if(mentions.size() > 0) {
-                user = event.getMessage().getMentionedUsers().get(0);
+                user = event.getMessage().getMentions().getUsers().get(0);
             } else {
                 event.getChannel().sendMessage("You did not mention the user you wish to prune.").queue();
                 return;

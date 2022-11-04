@@ -75,18 +75,18 @@ public class Dice implements Command {
         game.setTitle("Casino (Dice Roll)");
         if (dice == side) {
             game.setColor(Color.BLUE);
-            game.setDescription("**" + event.getAuthor().getName() + "** rolls the die and lands on..");
+            game.setDescription("**" + event.getMember().getNickname() + "** rolls the die and lands on..");
             game.appendDescription("\r\n\r\n**" + dice + "**");
-            game.appendDescription("\r\n\r\n**" + event.getAuthor().getName() + "** gains **" + (amount * 5) + "** :coin: tokens.");
+            game.appendDescription("\r\n\r\n**" + event.getMember().getNickname() + "** gains **" + (amount * 5) + "** :coin: tokens.");
             user.gainTokens(amount * 5);
             user.saveUser();
             MessageEmbed build = game.build();
             event.getTextChannel().sendMessageEmbeds(build).queue();
         } else {
             game.setColor(Color.RED);
-            game.setDescription("**" + event.getAuthor().getName() + "** rolls the die and lands on..");
+            game.setDescription("**" + event.getMember().getNickname() + "** rolls the die and lands on..");
             game.appendDescription("\r\n\r\n**" + dice + "**");
-            game.appendDescription("\r\n\r\n**" + event.getAuthor().getName() + "** loses **" + amount + "** :coin: tokens.");
+            game.appendDescription("\r\n\r\n**" + event.getMember().getNickname() + "** loses **" + amount + "** :coin: tokens.");
             user.gainTokens(-amount);
             user.saveUser();
             MessageEmbed build = game.build();
